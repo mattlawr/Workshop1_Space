@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49decb8ae2021e44b652a649fa6982c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorPrefab: {fileID: 4834540226407553334, guid: 21920f9982f14594b95377f5b9142b42,
+  meteorPrefab: {fileID: 8894681351401241199, guid: 21920f9982f14594b95377f5b9142b42,
     type: 3}
   timeSpawn: 1
 --- !u!4 &1792704786
