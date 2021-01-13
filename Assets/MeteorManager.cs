@@ -1,21 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MeteorManager : MonoBehaviour
 {
     public Meteor meteorPrefab;
 
+    public GameObject gameOverPanel;
+
+    public HealthParent healthParent;
+
+    public Text textScore;
+    public Text textTime;
+
     public float timeSpawn = 1f;    // Seconds to wait before spawning a new meteor
     float timer = 0f;
 
-    int health = 3;
+    float gameTimer = 0f;
+
+    int health = 4;
     int score = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (healthParent) healthParent.SetHealth(health);
+
+        if(textScore)
+        {
+            textScore.text = 0.ToString();
+        }
     }
 
     // Update is called once per frame
@@ -23,6 +38,9 @@ public class MeteorManager : MonoBehaviour
     {
         // Count how many seconds are passing
         timer += Time.deltaTime;
+        gameTimer += Time.deltaTime;
+
+        UpdateTimeText(gameTimer);
 
         // If we have passed a certain amount of seconds...
         if (timer > timeSpawn)
@@ -50,6 +68,12 @@ public class MeteorManager : MonoBehaviour
         m.Init(this);   // Tells the meteor some important info
     }
 
+    void UpdateTimeText(float t)
+    {
+        if (textTime) textTime.text = Mathf.FloorToInt(t).ToString();
+        else Debug.LogError("No reference");
+    }
+
     /// <summary>
     /// Decrease player health.
     /// </summary>
@@ -58,6 +82,8 @@ public class MeteorManager : MonoBehaviour
         health--;
 
         print("Health: " + health);
+
+        if(healthParent) healthParent.SetHealth(health);    // Update UI
 
         if(health <= 0)
         {
@@ -72,9 +98,12 @@ public class MeteorManager : MonoBehaviour
     /// </summary>
     public void ScorePoint()
     {
-        score++;
+        score += 100;
 
         print("Score: " + score);
+
+        if (textScore) textScore.text = score.ToString();
+        else Debug.LogError("No reference");
     }
 
     /// <summary>
@@ -84,6 +113,14 @@ public class MeteorManager : MonoBehaviour
     {
         Time.timeScale = 0f;    // Freezes time in Unity!
 
+        gameOverPanel.SetActive(true);
+
         print("Game Over");
+    }
+
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 }
