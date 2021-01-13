@@ -23,8 +23,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Time.timeScale == 0f) return;   // If game is paused don't let the player be controlled!
-
         // Movement
         float horizontal = 0f;
 

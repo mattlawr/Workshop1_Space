@@ -37,11 +37,8 @@ public class Bullet : MonoBehaviour
         // Destroy the meteor we just hit
         if (collision.gameObject)
         {
-            // Message meteor to die
-            Meteor m = collision.gameObject.GetComponent<Meteor>();
-            if (m) m.Die();
+            Destroy(collision.gameObject);
 
-            // Effects
             AudioSource.PlayClipAtPoint(hitClip, transform.position);
 
             GameObject fx = Instantiate(fxPrefab, transform.position, transform.rotation);
