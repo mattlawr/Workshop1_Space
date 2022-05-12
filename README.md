@@ -1,5 +1,10 @@
 # Workshop_Space
 
+VGDC Unity 101 Workshop 5/11/2022
+
+- Zoom recording will be posted soon
+
+
  Unity Project files for VGDC Unity UI Workshop 1/12/2020
 
 - [See info doc](https://docs.google.com/document/d/1jMQx9gIA1x2cEKxE2LTY-ANO9UPXPkoENwI4Ui_fPf8/edit?usp=sharing)
